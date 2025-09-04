@@ -82,6 +82,7 @@ int main (){
     ll.pushBack(7);
     ll.pushBack(8);
     ll.print();
-    ll.reverse(4);
+    ll.reverse(3);
     ll.print();
+
 }    
