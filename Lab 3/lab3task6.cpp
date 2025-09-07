@@ -12,24 +12,31 @@ class Node{
         next=child=nullptr;
     }
 };
-void flatten(Node *head){
-    Node *temp= head;
-    while (temp!=nullptr)
-    {
-        if (temp->child!=nullptr)
-        {
-           Node *nextNode=temp->next;
-           temp->next=temp->child;
-           Node *newtemp=temp->next;
-           while (newtemp->next!=nullptr)
-           {
-            newtemp=newtemp->next;
-           }
-           newtemp->next=nextNode;
+Node* flatten(Node* head) {
+    Node* temp = head;
+    Node* tail = head; 
+
+    while (temp != nullptr) {
+        Node* nextNode = temp->next;
+        if (temp->child != nullptr) {
+            Node* childHead = flatten(temp->child); 
+            temp->child = nullptr;                  
+            temp->next = childHead;               
+            Node* childTail = childHead;
+            while (childTail->next != nullptr) {
+                childTail = childTail->next;
+            }
+            childTail->next = nextNode;
+            tail = childTail;
+        } else {
+            tail = temp;
         }
-        temp=temp->next;
+
+        temp = nextNode;
     }
+    return head;
 }
+
 void print(Node *head){
         Node *temp;
         temp=head;
