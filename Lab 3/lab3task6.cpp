@@ -13,26 +13,26 @@ class Node{
     }
 };
 Node* flatten(Node* head) {
-    Node* temp = head;
-    Node* tail = head; 
+    Node* temp=head;
+    Node* tail=head; 
 
-    while (temp != nullptr) {
-        Node* nextNode = temp->next;
+    while (temp!=nullptr) {
+        Node* nextNode= temp->next;
         if (temp->child != nullptr) {
             Node* childHead = flatten(temp->child); 
             temp->child = nullptr;                  
             temp->next = childHead;               
             Node* childTail = childHead;
             while (childTail->next != nullptr) {
-                childTail = childTail->next;
+                childTail=childTail->next;
             }
-            childTail->next = nextNode;
-            tail = childTail;
+            childTail->next=nextNode;
+            tail=childTail;
         } else {
-            tail = temp;
+            tail=temp;
         }
 
-        temp = nextNode;
+        temp=nextNode;
     }
     return head;
 }
@@ -64,3 +64,4 @@ int main (){
     flatten(head1);
     print(head1);
 }
+
