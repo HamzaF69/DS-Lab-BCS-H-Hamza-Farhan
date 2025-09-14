@@ -14,12 +14,15 @@ void shellsort(int arr[], int n,Info &i){
         {
             int temp= arr[j];
             int res=j;
-            while (res >gap&& arr[res-gap]>temp)
-            {
+            while (res>=gap){
                 i.comp++;
-                arr[res]=arr[res-gap];
-                res=res-gap;
-                i.swaps++;
+                if (arr[res-gap]>temp) {
+                    arr[res]=arr[res-gap];
+                    res-=gap;
+                    i.swaps++;
+                }else{
+				    break;
+			    }
             }
             arr[res]=temp;
         }
@@ -46,12 +49,16 @@ void insertionsort(int arr[], int n,Info &in){
     {
         int key =arr[i];
         int j=i-1;
-        while (j>=0 && arr[j]>key)
+        while (j>=0 )
         {
             in.comp++;
-            arr[j+1]=arr[j];
-            j--;
-            in.swaps++;
+            if (arr[j]>key){
+                arr[j+1]=arr[j];
+                in.swaps++;
+                j--;
+            }else{
+				break;
+			}
         }
         arr[j+1]=key;
     }
