@@ -61,7 +61,7 @@ bool findEmptyCell(int grid[9][9],int &row,int &col) {
     return false;
 }
 
-void printBoard(int grid[9][9]) {
+void print(int grid[9][9]) {
     for(int row=0;row<9;row++) {
         for(int col = 0; col<9;col++) {
             cout<<grid[row][col]<<" ";
@@ -84,9 +84,10 @@ int main() {
 
     if (solveSudoku(grid)){
         cout<<"sudoku solved:\n";
-        printBoard(grid);
+        print(grid);
     } else{
         cout<<"no solution";
     }
     return 0;
+
 }
